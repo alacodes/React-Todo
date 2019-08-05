@@ -1,15 +1,15 @@
 import React from 'react';
-import Todo from './Todo';
+import uuid from 'uuid';
+import Todo from "./Todo";
 
-class TodoForm extends React.Component {
-    constructor() {
-        super();
-        this.state = {};
-    }
-
-    render() {
-        return <Todo />;
-    }
+const TodoList = props => {
+    return (
+        <>
+            {props.tasks.map(task => {
+                return <Todo key={uuid()} toggleTask={props.toggleTask} task={task} />;
+            })}
+        </>
+    );
 }
 
 export default TodoList;

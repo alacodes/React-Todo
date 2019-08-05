@@ -1,10 +1,42 @@
 import React from 'react';
+import uuid from 'uuid';
+
 import TodoForm from './components/TodoComponents/TodoForm';
 import TodoList from './components/TodoComponents/TodoList';
 
-
+const tasks = [
+  {
+    task: '',
+    id: null,
+    complete: false
+  }
+]
 
 class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      tasks
+    }
+  }
+  toggleTask = id = {
+    this.setState(prevState => {
+      return {
+        tasks: prevState.tasks.map(task => {
+          if (task.id === id) {
+            return {
+              ...task,
+              completed: !task.completed
+            };
+          } else {
+            return task;
+          }
+        })
+      };
+    });
+  };
+
+  
 
     render() {
     return (
@@ -28,12 +60,7 @@ export default App;
   // this component is going to take care of state, and any change handlers you need to work with your state
 
 
-// constructor(props) {
-//   super(props);
-//   this.state = {
-//     tasks: taskData
-//   };
-// }
+
   
 // const taskData = [
 //   {

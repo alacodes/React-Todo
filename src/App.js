@@ -19,7 +19,7 @@ class App extends React.Component {
       tasks
     }
   }
-  toggleTask = id = {
+  toggleTask = id => {
     this.setState(prevState => {
       return {
         tasks: prevState.tasks.map(task => {
@@ -35,17 +35,28 @@ class App extends React.Component {
       };
     });
   };
+  addTask = taskName => {
+    const newTask = {
+      name: taskName,
+      id: uuid(),
+      completed: false
+    };
+    this.setState(prevState => {
+      return {
+        tasks: [...prevState.tasks, newTask]
+      };
+    });
+  };
 
-  
 
     render() {
-    return (
-      <div>
-        <h2>Welcome to your Todo App!</h2>
-        <TodoList />
-        <TodoForm />
-      </div>
-    );
+      return (
+        <div>
+          <h2>Welcome to your Todo App!</h2>
+          <TodoList tasks = {this.state.tasks} toggleTask = {this.toggleTask} />
+          <TodoForm clearCompleted = {this.clearCompleted} addTask = {this.addTask} />
+        </div>
+      );
   }
 }
 
@@ -59,38 +70,3 @@ export default App;
   // design `App` to be the parent component of your application.
   // this component is going to take care of state, and any change handlers you need to work with your state
 
-
-
-  
-// const taskData = [
-//   {
-//     task: 'Go to the gym', 
-//     id: 500,
-//     completed: false
-//   },
-//   {
-//     task: 'Set up mentor meeting', 
-//     id: 150,
-//     completed: false
-//   },
-//   {
-//     task: 'Take notes for tomorrow', 
-//     id: 417,
-//     completed: false
-//   },
-//   {
-//     task: 'Clean the floor', 
-//     id: 205,
-//     completed: false
-//   },
-//   {
-//     task: 'Groceries + meal prep', 
-//     id: 478,
-//     completed: false
-//   },
-//   {
-//     task: 'Work on resume formatting', 
-//     id: 312,
-//     completed: false
-//   }
-// ];
